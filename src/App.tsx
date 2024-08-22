@@ -20,7 +20,9 @@ function App() {
     function handleCheck(e: ChangeEvent<HTMLInputElement>) {
         const i = parseInt(e.currentTarget.id.split("-")[1]);
         const newItems = [...items];
-        newItems[i].checked = e.currentTarget.checked;
+        newItems[i].checked
+            ? (newItems[i].checked = false)
+            : (newItems[i].checked = true);
         setItems(newItems);
     }
 
@@ -97,6 +99,7 @@ function App() {
                                 type="checkbox"
                                 id={`check-${i}`}
                                 onChange={handleCheck}
+                                checked={item.checked}
                             />
                             <span
                                 className={
