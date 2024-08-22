@@ -11,19 +11,28 @@ function App() {
     const [item, setItem] = useState<Item>({ task: "", checked: false });
     const [items, setItems] = useState<Item[]>([]);
 
-    // Handle delete item events
-    function deleteTask(e: MouseEvent<HTMLButtonElement>) {
-        const index = parseInt(e.currentTarget.id.split("-")[1]);
-        const newItems = items.filter((item, i) => i !== index);
-        setItems(newItems);
-    }
-
     // Handle checkbox events to mark item done
     function handleCheck(e: ChangeEvent<HTMLInputElement>) {
         const i = parseInt(e.currentTarget.id.split("-")[1]);
         const newItems = [...items];
         newItems[i].checked = e.currentTarget.checked;
         setItems(newItems);
+    }
+
+    // Handle delete item events
+    function handleDelete(e: MouseEvent<HTMLButtonElement>) {
+        const index = parseInt(e.currentTarget.id.split("-")[1]);
+        const newItems = items.filter((item, i) => i !== index);
+
+        // Fadeout
+        e.currentTarget.parentElement?.classList.toggle("fade-out");
+
+        // Set timer for setItems
+        setTimeout(() => {
+            setItems(newItems);
+        }, 500);
+
+        // Toggle back visibility for item id
     }
 
     // Handle form submission events to add new items to list
@@ -83,7 +92,7 @@ function App() {
                             >
                                 {item.task}
                             </span>
-                            <button id={`delete-${i}`} onClick={deleteTask}>
+                            <button id={`delete-${i}`} onClick={handleDelete}>
                                 Delete
                             </button>
                         </li>

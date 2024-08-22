@@ -30,6 +30,21 @@
     box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.4);
 }
 
+/* fade out */
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 /* app--add section */
 
 .app--add {
