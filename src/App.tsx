@@ -5,10 +5,15 @@ import "./App.css";
 interface Item {
     task: string;
     checked: boolean;
+    isFading: boolean;
 }
 
 function App() {
-    const [item, setItem] = useState<Item>({ task: "", checked: false });
+    const [item, setItem] = useState<Item>({
+        task: "",
+        checked: false,
+        isFading: false,
+    });
     const [items, setItems] = useState<Item[]>([]);
 
     // Handle checkbox events to mark item done
@@ -22,17 +27,17 @@ function App() {
     // Handle delete item events
     function handleDelete(e: MouseEvent<HTMLButtonElement>) {
         const index = parseInt(e.currentTarget.id.split("-")[1]);
-        const newItems = items.filter((item, i) => i !== index);
 
-        // Fadeout
-        e.currentTarget.parentElement?.classList.toggle("fade-out");
+        // Change isFading to true for item to delete
+        const fadingItems = [...items];
+        fadingItems[index].isFading = true;
+        setItems(fadingItems);
 
-        // Set timer for setItems
+        // Wait, then setItems list with item removed and fading false
         setTimeout(() => {
+            const newItems = items.filter((item, i) => i !== index);
             setItems(newItems);
         }, 500);
-
-        // Toggle back visibility for item id
     }
 
     // Handle form submission events to add new items to list
@@ -43,6 +48,7 @@ function App() {
         setItem({
             task: "",
             checked: false,
+            isFading: false,
         });
     }
 
@@ -51,6 +57,7 @@ function App() {
         setItem({
             task: e.currentTarget.value,
             checked: false,
+            isFading: false,
         });
     }
 
@@ -79,7 +86,13 @@ function App() {
                 <h2 className="app__h2">Your tasks</h2>
                 <ul className="app__ul">
                     {items.map((item, i) => (
-                        <li key={i} id={`item-${i}`}>
+                        <li
+                            key={i}
+                            className={
+                                item.isFading ? "fade-out app__li" : "app__li"
+                            }
+                            id={`item-${i}`}
+                        >
                             <input
                                 type="checkbox"
                                 id={`check-${i}`}
