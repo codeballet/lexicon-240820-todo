@@ -1,0 +1,115 @@
+/* Generic */
+
+#root {
+    max-width: 1280px;
+}
+
+.lineThrough {
+    text-decoration: line-through;
+}
+
+.noLine {
+    text-decoration: none;
+}
+
+.app__h2 {
+    margin-top: 1rem;
+    font-size: 1.6rem;
+}
+
+.app__form > input,
+.app__form > button,
+.app--list button {
+    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.2);
+    transition: 0.25s;
+}
+
+.app__form > button:hover,
+.app__form > input:hover,
+.app--list button:hover {
+    box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* app--add section */
+
+.app--add {
+    min-width: 250px;
+    max-width: 400px;
+}
+
+.app__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.app__form > input {
+    margin-top: 0.5rem;
+    height: 2rem;
+    padding: 0 0.5rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.app__form > button {
+    margin-top: 0.5rem;
+    width: 5rem;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #7fb1a1;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.app__form > button:hover {
+    background-color: #94beb1;
+}
+
+/* app--list section */
+
+.app--list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+
+.app__ul {
+    list-style: none;
+    width: 100%;
+    max-width: 400px;
+}
+
+.app__ul > li {
+    display: flex;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 2px solid rgb(202, 202, 202);
+}
+
+.app__ul > li > input {
+    align-self: flex-start;
+    min-width: 16px;
+    min-height: 16px;
+    margin-top: 0.3rem;
+}
+
+.app__ul > li > span {
+    flex-grow: 1;
+    margin-inline: 0.7rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.app__ul > li > button {
+    border: none;
+    border-radius: 5px;
+    padding: 0.2rem 0.5rem;
+    height: 1.7rem;
+    margin-top: 0.1rem;
+    background-color: #c7aba3;
+}
+
+.app__ul > li > button:hover {
+    background-color: #c57e6b;
+}
